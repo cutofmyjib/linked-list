@@ -10,6 +10,9 @@ Purpose: This is the main header file.
 #include <iostream>     /* cout, endl */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+
+#include "linkedlist.h"
+
 using namespace std;
 
 #endif /* MAIN_H */
