@@ -7,10 +7,11 @@ Purpose: This is the main cpp file.
 #include "main.h"
 
 int main() {
-    Node *temp = new Node(1, "testdata");
 
-    cout << temp->id << " " << temp->data << endl;
-    
+    DoublyLinkedList *doubly = new DoublyLinkedList();
+    doubly->addNode(1, "testdata");
+
+    cout << doubly->getCount() << endl;
+
     return 0;
 }
-

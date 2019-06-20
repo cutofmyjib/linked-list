@@ -15,16 +15,40 @@ struct Node
 {
     int id;
     string data;
+    Node *forward;
+    Node *back;
+
     //constructor
     Node(int idParam, string dataParam) 
     {
         id = idParam;
         data = dataParam;
-        Node *forward = nullptr;
-        Node *back = nullptr;
+        forward = nullptr;
+        back = nullptr;
     }
 };
 
+struct DataNode
+{
+    int id;
+    string data;
+};
 
+class DoublyLinkedList
+{
+private:
+    int count;
+    Node *head;
+    Node *tail;
+public:
+    DoublyLinkedList();
+    ~DoublyLinkedList();
+    bool addNode(int, string);
+    bool deleteNode(int);
+    bool getNode(int, DataNode*);
+    void printList(bool);
+    int getCount();
+    bool clear();
+};
 
 #endif //LINKED_LIST_H
