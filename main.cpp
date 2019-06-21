@@ -10,8 +10,22 @@ int main() {
 
     DoublyLinkedList *doubly = new DoublyLinkedList();
     doubly->addNode(1, "testdata");
+    doubly->addNode(2, "testdata2");
+    doubly->addNode(0, "testdata0");
+    doubly->addNode(4, "testdata4");
 
-    cout << doubly->getCount() << endl;
+    Node *nodePtr = doubly->head;
+    while (nodePtr != nullptr)
+    {
+        cout << nodePtr->id << endl;
+        nodePtr = nodePtr->forward;
+        
+    }    
 
+    cout << "---------" << endl;
+    Node *tailPtr = doubly->tail;
+    cout << tailPtr->id << endl;
+    tailPtr = tailPtr->back;
+    cout << tailPtr->id << endl;
     return 0;
 }
