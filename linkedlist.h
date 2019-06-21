@@ -36,7 +36,7 @@ struct DataNode
 
 class DoublyLinkedList
 {
-public:
+public: //TODO - make private!
     int count;
     Node *head;
     Node *tail;
