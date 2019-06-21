@@ -52,7 +52,7 @@ bool DoublyLinkedList::addNode(int addId , string addData)
     } 
     else if (head->id >= addId)
     {
-        // addNode id greater than head node id, then add before head node
+        // addNode id lesser than head node id, then add before head node
         addNode->forward = head;
         addNode->forward->back = addNode;
         head = addNode;
@@ -87,7 +87,6 @@ bool DoublyLinkedList::addNode(int addId , string addData)
         }
         currentPtr->forward = addNode;
         addNode->back = currentPtr;
-        // tail = 
 
         count++;
         isAdded = true;
