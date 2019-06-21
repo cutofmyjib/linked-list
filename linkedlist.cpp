@@ -43,7 +43,7 @@ bool DoublyLinkedList::addNode(int addId , string addData)
     // list empty
     if (head == nullptr)
     {
-        // A new node added in the beginning
+        // A new node in the beginning
         head = addNode;
         tail = addNode;
         head->back = nullptr;
@@ -52,6 +52,7 @@ bool DoublyLinkedList::addNode(int addId , string addData)
     } 
     else if (head->id >= addId)
     {
+        // addNode id greater than head node id, then add before head node
         addNode->forward = head;
         addNode->forward->back = addNode;
         head = addNode;
@@ -60,27 +61,30 @@ bool DoublyLinkedList::addNode(int addId , string addData)
     }
     else
     {
-        cout << (head->id >= addId ? "head->id >= addId" : "head->id <= addId") << endl; 
-        Node *nodePtr,
-             *newNode,
-             *currentPtr;
-    
-        // add node before the first node that has a value greater than or equal to the number.
+        // addNode id less than head node
+        Node *currentPtr;
         currentPtr = head;
 
-        // locate the node using a pointer
+        // locate where to insert addNode
         while ((currentPtr->forward != nullptr) && (currentPtr->forward->id < addId))
         {
             currentPtr = currentPtr->forward;
         }
 
+        //currentPtr is now located before the position where addNode needs to go
+        //assign addNode forward pointer to what currentPtr is pointing forward to
         addNode->forward = currentPtr->forward;
-        // add node before this pointer
+
+        // addNode inserted
+        // tail is addNode when currentPtr forward is not pointing to anything
         if (currentPtr->forward != NULL)
         {
             addNode->forward->back = addNode;
         }
-
+        else
+        {
+            tail = addNode;
+        }
         currentPtr->forward = addNode;
         addNode->back = currentPtr;
         // tail = 

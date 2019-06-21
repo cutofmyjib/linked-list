@@ -13,6 +13,7 @@ int main() {
     doubly->addNode(2, "testdata2");
     doubly->addNode(0, "testdata0");
     doubly->addNode(4, "testdata4");
+    doubly->addNode(4, "testdata4");
 
     Node *nodePtr = doubly->head;
     while (nodePtr != nullptr)
@@ -24,8 +25,11 @@ int main() {
 
     cout << "---------" << endl;
     Node *tailPtr = doubly->tail;
-    cout << tailPtr->id << endl;
-    tailPtr = tailPtr->back;
-    cout << tailPtr->id << endl;
+    while (tailPtr != nullptr)
+    {
+        cout << tailPtr->id << endl;
+        tailPtr = tailPtr->back;
+    }
+
     return 0;
 }
