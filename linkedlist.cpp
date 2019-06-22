@@ -21,6 +21,7 @@ memory.
 /* ** ** ** ** **  TODO REMOVE LOGS ** ** ** ** ** */
 #include <iostream>     /* cout, endl */
 using namespace std;
+/* ** ** ** ** **  TODO REMOVE LOGS ** ** ** ** ** */
 
 #include "linkedlist.h"
 
@@ -98,4 +99,30 @@ bool DoublyLinkedList::addNode(int addId , string addData)
 int DoublyLinkedList::getCount()
 {
     return count;
+}
+
+bool DoublyLinkedList::getNode(int nodeId, DataNode *returnNode)
+{
+    Node *nodePtr;
+    nodePtr = head;
+
+    bool isFound = false;
+
+    if (!((nodeId >= head->id) && (nodeId <= tail->id)))
+    {
+        return isFound;
+    }
+
+    while ((nodePtr->forward != nullptr) && (nodePtr->id <= nodeId))
+    {
+        if (nodePtr->id == nodeId) {
+            returnNode->id = nodePtr->id;
+            returnNode->data =  nodePtr->data;
+            isFound = true;
+        }
+
+        nodePtr = nodePtr->forward;
+    }
+
+    return isFound;
 }
