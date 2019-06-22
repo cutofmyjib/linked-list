@@ -126,3 +126,26 @@ bool DoublyLinkedList::getNode(int nodeId, DataNode *returnNode)
 
     return isFound;
 }
+
+void DoublyLinkedList::printList(bool flag)
+{
+
+    Node *nodePtr;
+    
+    flag ? nodePtr = head : nodePtr = tail; 
+
+    while (nodePtr != nullptr)
+    {
+        if (flag == true)
+        { 
+            cout << nodePtr->id << endl;
+            nodePtr = nodePtr->forward;
+        }
+        else 
+        {
+            cout << nodePtr->id << endl;
+            nodePtr = nodePtr->back;
+        }
+    }  
+
+}

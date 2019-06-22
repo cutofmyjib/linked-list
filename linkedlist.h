@@ -47,7 +47,7 @@ public: //TODO - make private!
     bool addNode(int, string);
     bool deleteNode(int);
     bool getNode(int, DataNode*);
-    void printList(bool);
+    void printList(bool flag=true);
     int getCount();
     bool clear();
 };

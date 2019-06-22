@@ -30,6 +30,9 @@ int main() {
     //     cout << tailPtr->id << endl;
     //     tailPtr = tailPtr->back;
     // }
+
+    doubly->printList();
+
     DataNode *targetNode0 = new DataNode();
     bool isFound0 = doubly->getNode(0, targetNode0);
     cout << "Get node 0 "<< (isFound0 ? "is found" : "is not found") << " == is found" << endl;
