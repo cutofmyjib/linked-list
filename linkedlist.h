@@ -36,18 +36,17 @@ struct DataNode
 
 class DoublyLinkedList
 {
-public: //TODO - make private!
+private:
     int count;
     Node *head;
     Node *tail;
-// public:
-
+public:
     DoublyLinkedList();
     ~DoublyLinkedList();
     bool addNode(int, string);
     bool deleteNode(int);
     bool getNode(int, DataNode*);
-    void printList(bool);
+    void printList(bool flag=true);
     int getCount();
     bool clear();
 };
