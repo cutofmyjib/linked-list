@@ -36,12 +36,11 @@ struct DataNode
 
 class DoublyLinkedList
 {
-public: //TODO - make private!
+private:
     int count;
     Node *head;
     Node *tail;
-// public:
-
+public:
     DoublyLinkedList();
     ~DoublyLinkedList();
     bool addNode(int, string);

@@ -36,7 +36,7 @@ DoublyLinkedList::~DoublyLinkedList()
 {
 }
 
-bool DoublyLinkedList::addNode(int addId , string addData)
+bool DoublyLinkedList::addNode(int addId, string addData)
 {
     bool isAdded = false;
     Node *addNode = new Node(addId, addData);
@@ -96,6 +96,62 @@ bool DoublyLinkedList::addNode(int addId , string addData)
     return isAdded;
 }
 
+bool DoublyLinkedList::deleteNode(int targetId)
+{
+    DataNode *targetNode = new DataNode();
+    Node *currentPtr;
+    bool isFound = getNode(targetId, targetNode);
+    bool isDeleted = false;
+
+    if (!head || !isFound)
+    {
+        return isDeleted;
+    }
+    
+    //if deleting first node
+    if (head->id == targetId)
+    {
+        currentPtr = head;
+        head = head->forward;
+        delete currentPtr;
+        count--;
+        isDeleted = true;
+    }
+    else
+    {
+        currentPtr = head;
+
+        while (currentPtr != nullptr)
+        {
+            if (currentPtr->id == targetId)
+            {
+                
+                //if tail, set forward to null
+                if (currentPtr->forward == nullptr)
+                {
+                    currentPtr->back->forward = nullptr;
+                    currentPtr->forward = nullptr;
+                }
+                else
+                {
+                    currentPtr->back->forward = currentPtr->forward;
+                    currentPtr->forward->back = currentPtr->back;
+                }
+                
+                delete currentPtr;
+                
+                count--;
+                isDeleted = true;
+                return isDeleted;
+            }
+
+            currentPtr = currentPtr->forward;
+        }
+    }
+
+    return isDeleted;
+}
+
 int DoublyLinkedList::getCount()
 {
     return count;
@@ -113,12 +169,13 @@ bool DoublyLinkedList::getNode(int nodeId, DataNode *returnNode)
         return isFound;
     }
 
-    while ((nodePtr->forward != nullptr) && (nodePtr->id <= nodeId))
+    while ((nodePtr != nullptr) && (nodePtr->id <= nodeId))
     {
         if (nodePtr->id == nodeId) {
             returnNode->id = nodePtr->id;
             returnNode->data =  nodePtr->data;
             isFound = true;
+            return isFound;
         }
 
         nodePtr = nodePtr->forward;
@@ -129,9 +186,7 @@ bool DoublyLinkedList::getNode(int nodeId, DataNode *returnNode)
 
 void DoublyLinkedList::printList(bool flag)
 {
-
-    Node *nodePtr;
-    
+    Node *nodePtr;   
     flag ? nodePtr = head : nodePtr = tail; 
 
     while (nodePtr != nullptr)
