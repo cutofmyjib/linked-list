@@ -16,36 +16,42 @@ int main() {
     doubly->addNode(5, "testdata5");
     doubly->addNode(3, "testdata3");
 
+    cout << "Print list ascending order" << endl;
     doubly->printList();
 
-    int count = doubly->getCount();
-    cout << "doubly count should be 6: " << (count == 6 ? "true" : "false") << endl;
+    cout << "doubly count should be 6: " << (doubly->getCount() == 6 ? "true" : "false") << endl;
+    cout << endl;
 
-    // DataNode *targetNode0 = new DataNode();
-    // bool isFound0 = doubly->getNode(0, targetNode0);
-    // cout << "Get node 0 "<< (isFound0 ? "is found" : "is not found") << " == is found" << endl;
-    // cout << ("testdata0" == targetNode0->data ? "true" : "false") << " == true" << endl;
+    DataNode *targetNode0 = new DataNode();
+    bool isFound0 = doubly->getNode(0, targetNode0);
+    cout << "Get node 0 "<< (isFound0 ? "is found" : "is not found") << " == is found" << endl;
+    cout << ("testdata0" == targetNode0->data ? "true" : "false") << " == true" << endl;
+    cout << endl;
 
-    // DataNode *targetNode3 = new DataNode();
-    // bool isFound3 = doubly->getNode(3, targetNode3);
-    // cout << "Get node 3 "<< (isFound3 ? "is found" : "is not found") << " == is NOT found" << endl;
-    // cout << ("testdata3" == targetNode3->data ? "true" : "false") << " == false" << endl;
-
+    DataNode *targetNode13 = new DataNode();
+    bool isFound13 = doubly->getNode(13, targetNode13);
+    cout << "Get node 13 "<< (isFound13 ? "is found" : "is not found") << " == is NOT found" << endl;
+    cout << ("testdata3" == targetNode13->data ? "true" : "false") << " == false" << endl;
+    cout << endl;
 
     DataNode *targetNode5 = new DataNode();
     bool isFound5 = doubly->getNode(5, targetNode5);
     cout << "Get node 5 "<< (isFound5 ? "is found" : "is not found") << " == is found" << endl;
     cout << ("testdata5" == targetNode5->data ? "true" : "false") << " == true" << endl;
+    cout << endl;
 
+    cout << "Delete node 5" << endl;
     doubly->deleteNode(5);
+    cout << endl;
+
+    cout << "Delete node 4" << endl;
     doubly->deleteNode(4);
-    cout << "doubly count: " << doubly->getCount() << endl;    
-    
-    doubly->printList();
+    cout << endl;
 
-    // doubly->clear();
-
+    cout << "doubly count should be 4: " << (doubly->getCount() == 4 ? "true" : "false") << endl; 
     
+    cout << "Print list descending order" << endl;
+    doubly->printList(false);
     
     return 0;
 }
