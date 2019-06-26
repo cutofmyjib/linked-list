@@ -43,6 +43,9 @@ int main() {
     
     doubly->printList();
 
+    // doubly->clear();
+
+    
     
     return 0;
 }

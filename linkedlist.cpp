@@ -34,6 +34,8 @@ DoublyLinkedList::DoublyLinkedList()
  
 DoublyLinkedList::~DoublyLinkedList()
 {
+    clear();
+    cout << "destru " << count << endl;
 }
 
 bool DoublyLinkedList::addNode(int addId, string addData)
@@ -94,6 +96,32 @@ bool DoublyLinkedList::addNode(int addId, string addData)
     } 
 
     return isAdded;
+}
+
+bool DoublyLinkedList::clear()
+{
+    bool isClear = false;
+    Node *nodePtr = head; 
+    while (nodePtr != nullptr)
+    {
+        
+        // garbage keeps track of node to be deleted
+        Node *garbage = nodePtr;
+        // cout << garbage << endl;
+
+        // Move on to the prev node, if any        
+        nodePtr = nodePtr->forward; 
+
+        //Delete the "garbage" node 
+        if (garbage)
+        {
+            count--;
+            delete garbage;
+        }
+
+        isClear = true;
+    }
+    return isClear;
 }
 
 bool DoublyLinkedList::deleteNode(int targetId)
@@ -204,3 +232,4 @@ void DoublyLinkedList::printList(bool flag)
     }  
 
 }
+
