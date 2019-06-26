@@ -40,6 +40,8 @@ private:
     int count;
     Node *head;
     Node *tail;
+    bool clear();
+    
 public:
     DoublyLinkedList();
     ~DoublyLinkedList();
@@ -48,7 +50,6 @@ public:
     bool getNode(int, DataNode*);
     void printList(bool flag=true);
     int getCount();
-    bool clear();
 };
 
 #endif //LINKED_LIST_H
