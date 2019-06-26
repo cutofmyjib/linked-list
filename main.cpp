@@ -52,6 +52,10 @@ int main() {
     
     cout << "Print list descending order" << endl;
     doubly->printList(false);
+    cout << endl;
+    
+    cout << "Print list ascending order" << endl;
+    doubly->printList(true);
     
     return 0;
 }

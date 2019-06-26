@@ -124,9 +124,8 @@ bool DoublyLinkedList::deleteNode(int targetId)
 {
     DataNode *targetNode = new DataNode();
     Node *currentPtr;
-    bool isFound = getNode(targetId, targetNode);
 
-    if (!head || !isFound)
+    if (!head)
     {
         return true;
     }
@@ -136,6 +135,7 @@ bool DoublyLinkedList::deleteNode(int targetId)
     {
         currentPtr = head;
         head = head->forward;
+        head->back = nullptr;
         delete currentPtr;
         count--;
         return true;
@@ -145,6 +145,7 @@ bool DoublyLinkedList::deleteNode(int targetId)
     {
         currentPtr = tail;
         tail = tail->back;
+        tail->forward = nullptr;
         delete currentPtr;
         count--;
         return true;
@@ -160,8 +161,6 @@ bool DoublyLinkedList::deleteNode(int targetId)
             currentPtr->back->forward = currentPtr->forward;
             currentPtr->forward->back = currentPtr->back;
         
-            
-            currentPtr = nullptr;
             delete currentPtr;
             
             count--;
