@@ -18,10 +18,8 @@ memory.
 ***********************************************************/
 
 
-/* ** ** ** ** **  TODO REMOVE LOGS ** ** ** ** ** */
-#include <iostream>     /* cout, endl */
+#include <iostream>     /* cout, endl, for printList */
 using namespace std;
-/* ** ** ** ** **  TODO REMOVE LOGS ** ** ** ** ** */
 
 #include "linkedlist.h"
 
@@ -35,7 +33,6 @@ DoublyLinkedList::DoublyLinkedList()
 DoublyLinkedList::~DoublyLinkedList()
 {
     clear();
-    cout << "destru " << count << endl;
 }
 
 bool DoublyLinkedList::addNode(int addId, string addData)
@@ -107,7 +104,6 @@ bool DoublyLinkedList::clear()
         
         // garbage keeps track of node to be deleted
         Node *garbage = nodePtr;
-        // cout << garbage << endl;
 
         // Move on to the prev node, if any        
         nodePtr = nodePtr->forward; 
@@ -129,11 +125,10 @@ bool DoublyLinkedList::deleteNode(int targetId)
     DataNode *targetNode = new DataNode();
     Node *currentPtr;
     bool isFound = getNode(targetId, targetNode);
-    bool isDeleted = false;
 
     if (!head || !isFound)
     {
-        return isDeleted;
+        return true;
     }
     
     //if deleting first node
@@ -143,41 +138,40 @@ bool DoublyLinkedList::deleteNode(int targetId)
         head = head->forward;
         delete currentPtr;
         count--;
-        isDeleted = true;
+        return true;
     }
-    else
+    
+    if (tail->id == targetId)
     {
-        currentPtr = head;
-
-        while (currentPtr != nullptr)
-        {
-            if (currentPtr->id == targetId)
-            {
-                
-                //if tail, set forward to null
-                if (currentPtr->forward == nullptr)
-                {
-                    currentPtr->back->forward = nullptr;
-                    currentPtr->forward = nullptr;
-                }
-                else
-                {
-                    currentPtr->back->forward = currentPtr->forward;
-                    currentPtr->forward->back = currentPtr->back;
-                }
-                
-                delete currentPtr;
-                
-                count--;
-                isDeleted = true;
-                return isDeleted;
-            }
-
-            currentPtr = currentPtr->forward;
-        }
+        currentPtr = tail;
+        tail = tail->back;
+        delete currentPtr;
+        count--;
+        return true;
     }
 
-    return isDeleted;
+
+    currentPtr = head;
+    while (currentPtr != nullptr)
+    {
+        if (currentPtr->id == targetId)
+        {
+        
+            currentPtr->back->forward = currentPtr->forward;
+            currentPtr->forward->back = currentPtr->back;
+        
+            
+            currentPtr = nullptr;
+            delete currentPtr;
+            
+            count--;
+            return true;
+        }
+
+        currentPtr = currentPtr->forward;
+    }
+
+    return false;
 }
 
 int DoublyLinkedList::getCount()
