@@ -4,12 +4,16 @@ Assignment: 03
 Purpose: This is the stack header file.
 ***********************************************************/
 
+#include <iostream>     /* cout, endl, for printList */
+
 //this is a directive that prevents .h files from being included more than once
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
 #include <string>
 using std::string;
+using std::cout;
+using std::endl;;
 
 struct Node
 {

@@ -17,10 +17,6 @@ not found, place a -1 in the id and empty string in the string and return false.
 memory.
 ***********************************************************/
 
-
-#include <iostream>     /* cout, endl, for printList */
-using namespace std;
-
 #include "linkedlist.h"
 
 DoublyLinkedList::DoublyLinkedList()
