@@ -44,16 +44,16 @@ private:
     int count;
     Node *head;
     Node *tail;
-    bool clear();
     
 public:
     DoublyLinkedList();
     ~DoublyLinkedList();
     bool addNode(int, string);
+    bool clear();
     bool deleteNode(int);
+    int getCount();
     bool getNode(int, DataNode*);
     void printList(bool flag=true);
-    int getCount();
 };
 
 #endif //LINKED_LIST_H
