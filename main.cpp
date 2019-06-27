@@ -49,6 +49,7 @@ int main() {
     cout << endl;
 
     cout << "doubly count should be 4: " << (doubly->getCount() == 4 ? "true" : "false") << endl; 
+    cout << endl;
     
     cout << "Print list descending order" << endl;
     doubly->printList(false);
@@ -56,6 +57,7 @@ int main() {
     
     cout << "Print list ascending order" << endl;
     doubly->printList(true);
+
     
     return 0;
 }

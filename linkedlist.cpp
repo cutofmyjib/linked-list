@@ -23,7 +23,6 @@ DoublyLinkedList::DoublyLinkedList()
 {
     count = 0;
     head = NULL;
-    tail = NULL;
 }
  
 DoublyLinkedList::~DoublyLinkedList()
@@ -41,7 +40,6 @@ bool DoublyLinkedList::addNode(int addId, string addData)
     {
         // A new node in the beginning
         head = addNode;
-        tail = addNode;
         head->back = nullptr;
         count++;
         isAdded = true;
@@ -72,15 +70,11 @@ bool DoublyLinkedList::addNode(int addId, string addData)
         addNode->forward = currentPtr->forward;
 
         // addNode inserted
-        // tail is addNode when currentPtr forward is not pointing to anything
         if (currentPtr->forward != NULL)
         {
             addNode->forward->back = addNode;
         }
-        else
-        {
-            tail = addNode;
-        }
+        
         currentPtr->forward = addNode;
         addNode->back = currentPtr;
 
@@ -136,26 +130,21 @@ bool DoublyLinkedList::deleteNode(int targetId)
         count--;
         return true;
     }
-    
-    if (tail->id == targetId)
-    {
-        currentPtr = tail;
-        tail = tail->back;
-        tail->forward = nullptr;
-        delete currentPtr;
-        count--;
-        return true;
-    }
-
 
     currentPtr = head;
     while (currentPtr != nullptr)
     {
         if (currentPtr->id == targetId)
         {
-        
-            currentPtr->back->forward = currentPtr->forward;
-            currentPtr->forward->back = currentPtr->back;
+            if (currentPtr->forward != nullptr)
+            {
+                currentPtr->back->forward = currentPtr->forward;
+                currentPtr->forward->back = currentPtr->back;
+            }
+            else
+            {
+                currentPtr->back->forward = nullptr;   
+            }        
         
             delete currentPtr;
             
@@ -181,11 +170,6 @@ bool DoublyLinkedList::getNode(int nodeId, DataNode *returnNode)
 
     bool isFound = false;
 
-    if (!((nodeId >= head->id) && (nodeId <= tail->id)))
-    {
-        return isFound;
-    }
-
     while ((nodePtr != nullptr) && (nodePtr->id <= nodeId))
     {
         if (nodePtr->id == nodeId) {
@@ -203,20 +187,38 @@ bool DoublyLinkedList::getNode(int nodeId, DataNode *returnNode)
 
 void DoublyLinkedList::printList(bool flag)
 {
-    Node *nodePtr;   
-    flag ? nodePtr = head : nodePtr = tail; 
-
-    while (nodePtr != nullptr)
+    Node *searchPtr = head;
+    Node *tailPtr;
+     
+    if (getCount() > 1) 
     {
-        if (flag == true)
-        { 
+        while (searchPtr != nullptr)
+        {
+            //set tail pointer
+            if (searchPtr->forward == nullptr)
+            {
+                tailPtr = searchPtr;
+            }
+            searchPtr = searchPtr->forward;
+        }
+    }
+    
+    Node *nodePtr = head;
+
+    if (flag)
+    {
+        while (nodePtr != nullptr)
+        {
             cout << nodePtr->id << endl;
             nodePtr = nodePtr->forward;
         }
-        else 
+    }
+    else 
+    {
+        while (tailPtr != nullptr)
         {
-            cout << nodePtr->id << endl;
-            nodePtr = nodePtr->back;
+            cout << tailPtr->id << endl;
+            tailPtr = tailPtr->back;
         }
     }  
 
