@@ -43,7 +43,6 @@ class DoublyLinkedList
 private:
     int count;
     Node *head;
-    Node *tail;
     
 public:
     DoublyLinkedList();
