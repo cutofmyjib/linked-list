@@ -13,7 +13,7 @@ Purpose: This is the stack header file.
 #include <string>
 using std::string;
 using std::cout;
-using std::endl;;
+using std::endl;
 
 struct Node
 {
